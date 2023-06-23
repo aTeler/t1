@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  {% block title %}
+  <title>Siscon Django</title>
+  {% endblock %}
+</head>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<body>
+
+{% load static %}
+
+
+<link rel="stylesheet" href="{% static 'css/styles.css' %}">
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-1">
+      {% block sidebar %}
+      <div class="sidebar">
+
+        <a href="">Gestion de Convocatorias</a>
+        <a href="{% url 'conv_listar' %}">Convocatorias</a>
+        <a href="{% url 'listar' %}">Inscriptos</a>
+        <a href="{% url 'buscar_persona' %}">Buscar Inscripto</a>
+        <a href="{% url 'inscripciones_listar' %}">Inscripciones</a>
+        <a href="{% url 'legajo' %}">Legajos</a>
+        {% if user.is_authenticated %}
+        <p> Usuario: {{user.get_nameuser }} </p>
+      </div>
+      {% endif %}
+      {% endblock %}
+    </div>
+
+      <div class="col-sm-11">
+        <div class="main"
+
+        {% block content %}
+        {% endblock %}
+        </div>
+      </div>
+  </div>
+
+</div>
+
+
+</body>
+</html>

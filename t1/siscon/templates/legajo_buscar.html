@@ -1,0 +1,48 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+
+{% load crispy_forms_tags %}
+
+<h1>Legajos</h1>
+<p>
+   <a class="btn btn-outline-success" href="{% url 'crear' %}">Nuevo Legajo</a>
+</p>
+<form method="get">
+   {{ form |  crispy }}
+  <input type="text" name="buscar" id="buscar" value="{{ request.GET.buscar }}">
+  <button type="submit">Buscar</button>
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-2 ">Apellidos</div>
+    <div class="col-sm-2 ">Nombres</div>
+    <div class="col-sm-1 ">DNI</div>
+    <div class="col-sm-2 ">Domicilio Real</div>
+    <div class="col-sm-1 ">Celular</div>
+    <div class="col-sm-1 ">Fecha de Alta Legajo </div>
+    <div class="col-sm-1 ">legajo </div>
+    <div class="col-sm-2 ">Acciones </div>
+
+  {% for legajo in Legajo %}
+  <div class="row">
+    <div class="col-sm-2 ">{{ legajo.persona.apellidos }} </div>
+    <div class="col-sm-2 ">{{ legajo.persona.nombres }} </div>
+    <div class="col-sm-1 ">{{ legajo.persona.dni }} </div>
+    <div class="col-sm-2 ">{{ legajo.persona.domicilio_real }} </div>
+    <div class="col-sm-1 ">{{ legajo.persona.celular }} </div>
+    <div class="col-sm-1 ">{{ legajo.fechacreacion | date:"d-m-Y"  }} </div>
+    <div class="col-sm-1 ">{{ legajo.persona.pk }} </div>
+    <div class="col-sm-2 ">
+      <div class="btn-group btn-group-sm">
+        <a class="btn btn-primary" href="{% url 'documentacion' legajo.persona.pk %}">Documentacion</a>
+
+      </div>
+    </div>
+  </div>
+    {% endfor %}
+
+</div>
+</form>
+{% endblock %}

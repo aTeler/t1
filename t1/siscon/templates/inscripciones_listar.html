@@ -1,0 +1,37 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+{% load crispy_forms_tags %}
+
+<h1>Inscripciones</h1>
+
+
+<div class="container.fluid">
+  <form method="post">
+   {{ form | crispy }}
+  <div class="row">
+    <div class="col-sm-1 ">Convocatoria</div>
+    <div class="col-sm-2 ">Fecha de Inscripcion</div>
+    <div class="col-sm-2 ">Apellidos</div>
+    <div class="col-sm-2 ">Nombres</div>
+    <div class="col-sm-1 ">Fecha de Finalización</div>
+    <div class="col-sm-2 ">Descripción</div>
+
+
+  {% for Insc in Inscripcion %}
+  <div class="row">
+    <div class="col-sm-1 ">{{ Insc.nombre }} </div>
+    <div class="col-sm-2 ">{{ Insc.fecha_insc | date:"d-m-Y h:m" }} </div>
+    <div class="col-sm-2 ">{{ Insc.persona.apellidos }} </div>
+    <div class="col-sm-2 ">{{ Insc.persona.nombres }} </div>
+    <div class="col-sm-1 ">{{ Insc.convocatoria.finalizacion | date:"d-m-Y"  }} </div>
+    <div class="col-sm-2 ">{{ Insc.convocatoria.descripcion  }} </div>
+
+
+  </div>
+  {% endfor %}
+    </form>
+</div>
+
+{% endblock %}

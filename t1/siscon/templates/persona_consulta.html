@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+ {% csrf_token %}
+{% block title %}
+  {{persona.dni}}
+{% endblock title %}
+{% block content %}
+  <h1>{{persona.dni}}</h1>
+  <p>{{persona.apellidos}}</p>
+  <p> {{persona.nombres}}</p>
+{% endblock %}
+
+
+
+

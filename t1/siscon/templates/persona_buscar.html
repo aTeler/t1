@@ -1,0 +1,69 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+
+{% load crispy_forms_tags %}
+
+<h1>Inscriptos</h1>
+<div class="container border m-1 p-1">
+
+<form method="get">
+
+   {% csrf_token %}
+   {{ form | crispy }}
+  <div class="row">
+    <div class="col-sm-3">
+      <div class="input-group input-group-sm">
+        <input type="text" name="buscar" id="buscar" value="{{ request.GET.buscar }}">
+        <button class ="btn btn-outline-primary" type="submit">Buscar</button>
+      </div>
+    </div>
+    <div class="col-sm-7"></div>
+    <div class="col-sm-2">
+       <a class="btn btn-outline-success" href="{% url 'crear' %}">Nuevo Inscripto</a>
+    </div>
+  </div>
+
+  <div class="container border m-1">
+    <div class="row" style=" font-weight: bold;">
+      <div class="col-sm-2 ">Apellidos</div>
+      <div class="col-sm-2 ">Nombres</div>
+      <div class="col-sm-1 ">DNI</div>
+      <div class="col-sm-2 ">Domicilio Real</div>
+      <div class="col-sm-1 ">Celular</div>
+      <div class="col-sm-2 ">Email</div>
+      <div class="col-sm-2 ">Acciones </div>
+    </div>
+  <div class="accordion" id="accordion1">
+  {% for persona in Persona %}
+
+    <div class="accordion-item">
+      <div class="accordion-header" id="heading{{persona.pk }}">
+        <div class="row" style="background-color:#ddd;">
+          <div class="col-sm-2 ">{{ persona.apellidos }} </div>
+          <div class="col-sm-2 ">{{ persona.nombres }} </div>
+          <div class="col-sm-1 ">{{ persona.dni }} </div>
+          <div class="col-sm-2 ">{{ persona.domicilio_real }} </div>
+          <div class="col-sm-1 ">{{ persona.celular }} </div>
+          <div class="col-sm-2 ">{{ persona.email }} </div>
+        </div>
+      </div>
+    </div>
+    <div id="collapse{{persona.pk}}" class="accordion-collapse collapse {% if forloop.first %}show{% endif %}" aria-labelledby="heading{{category.id}}" data-bs-parent="#accordionExample">
+      <div class="accordion-body">
+        <div class="row" style="background-color:#ddd;">
+          <div class="col-sm-2">{{persona.localidad }}</div>
+          <div class="col-sm-2 ">
+            <div class="btn-group btn-group-sm">
+              <a class="btn btn-outline-primary" href="{% url 'editar' persona.pk %}">Editar</a>
+              <a class="btn btn-outline-primary" href="{% url 'inscripciones' persona.pk %}">Inscripciones</a>
+              <button type="button" class="btn btn-outline-primary" href="">Eliminar</button>
+            </div>
+          </div>
+        </div>
+    {% endfor %}
+  </div>
+</form>
+</div>
+{% endblock %}

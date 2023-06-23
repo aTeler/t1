@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% load crispy_forms_tags %}
+<form action="" method="post">
+  {% csrf_token %}
+  <div class="container border p-3 m-3">
+   <div class="row">
+     <div class="form-group col-md-6 mb-0">
+       {{ form.apellidos|as_crispy_field }}
+     </div>
+     <div class="form-group col-md-6 mb-0">
+       {{ form.nombres|as_crispy_field }}
+     </div>
+   </div>
+
+ <div class="row">
+    <div class="form-group col-md-6 mb-0">
+       {{ form.domicilio_real|as_crispy_field }}
+    </div>
+    <div class="form-group col-md-6 mb-0">
+       {{ form.localidad|as_crispy_field }}
+    </div>
+   </div>
+
+  <div class="row">
+    <div class="form-group col-md-3 mb-0">
+       {{ form.dni|as_crispy_field }}
+     </div>
+     <div class="form-group col-md-3 mb-0">
+       {{ form.fecha_nacimiento|as_crispy_field }}
+     </div>
+     <div class="form-group col-md-3 mb-0">
+       {{ form.telefono|as_crispy_field }}
+     </div>
+     <div class="form-group col-md-3 mb-0">
+       {{ form.celular|as_crispy_field }}
+     </div>
+
+   </div>
+
+  <div class="row">
+     <div class="col 12">
+       {{ form.email|as_crispy_field }}
+     </div>
+   </div>
+
+  <div class="row">
+     <div class="col 12">
+       {{ form.titulo|as_crispy_field }}
+     </div>
+  </div>
+
+    <button type="submit" class="btn btn-outline-primary">Confirma</button>
+  </div>
+</form>
+
+{% endblock %}
+

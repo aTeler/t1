@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<form action="" method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+<div class="fieldWrapper">
+
+</div>
+
+  <h2>Documentacion</h2>
+  <p>
+    <a href="" class="btn btn-success btn-sm"> {{ documentacion.legajo_id }} Agregar Documentación</a>
+  </p>
+  <p>
+    id de legajo : {{ documentacion.persona.pk }}
+  </p>
+  <table  class="table">
+    <thead>
+    <tr>
+      <th>Fecha ingreso</th>
+      <th>Legajo</th>
+      <th>Persona</th>
+      <th>tipo de Documentacion</th>
+      <th>adjunto</th>
+    </tr>
+    </thead>
+  {% for D in documentacion %}
+  <tr>
+   <td> {{ D.fecha_ingreso | date:"d-m-Y h:m" }}</td>
+   <td> {{ D.persona.pk }}  </td>
+   <td> {{ D.persona.apellidos }}, {{ D.persona.nombres }} </td>
+    <td> {{ D.tipodoc.tipo }} </td>
+
+    <td> <a href="{{ D.archivo.url }}" class="btn btn-primary btn-sm" target="_blank">Descargar</a> </td>
+    <td>
+       <form method="post" action="">
+         {% csrf_token %}
+         <button type="submit" class="btn btn-danger btn-sm">Borrar</button>
+       </form>
+    </td>
+  </tr>
+
+
+  {% endfor %}
+
+  </table>
+  <p>
+    id de legajo : {{ D.legajo }}
+  </p>
+</form>
+
+{% endblock %}

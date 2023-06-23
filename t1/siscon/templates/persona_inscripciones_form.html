@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% load crispy_forms_tags %}
+<form action="" method="post">
+  {% csrf_token %}
+    {{ form | crispy }}
+<div class="fieldWrapper">
+
+</div>
+
+  <h2>Inscripciones</h2>
+  <table>
+    <tr>
+      <th>Numero</th>
+      <th>Año</th>
+      <th>Area</th>
+      <th>Nombre</th>
+      <th>Fecha Inscripcion</th>
+      <th>Orden</th>
+    </tr>
+  {% for I in inscripcion %}
+  <tr>
+   <td> {{ I.numero }}</td>
+   <td> {{ I.anio }}  </td>
+   <td> {{ I.idarea }} </td>
+   <td> {{ I.nombre }} </td>
+    <td> {{ I.fecha_insc }}</td>
+    <td> {{ I.pos }} </td>
+  </tr>
+  {% endfor %}
+
+  </table>
+  <input type="submit" value="Confirma">
+</form>
+
+{% endblock %}
+

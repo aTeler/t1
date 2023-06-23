@@ -1,0 +1,15 @@
+
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>Cargar Documentacion</h2>
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    <input type="file" name="document">
+    <button type="submit">subir Archivo</button>
+  </form>
+  {% if url %}
+    <p>Archivo Subido: <a href="{{ url }}">{{ url }}</a></p>
+  {% endif %}
+{% endblock %}

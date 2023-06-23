@@ -1,0 +1,41 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1>Convocatorias</h1>
+
+<div class="container p-3 my-2 border">
+  <p>
+    <a class="btn btn-outline-success" href="{% url 'conv_crear' %}">Nueva Convocatoria</a>
+</p>
+  <div class="row border" style="font-weight: bold;">
+    <div class="col-sm-1 ">Area</div>
+    <div class="col-sm-1 ">Nombre</div>
+    <div class="col-sm-2 ">Descripcion</div>
+    <div class="col-sm-3 ">Detalle</div>
+    <div class="col-sm-1 ">Estado</div>
+    <div class="col-sm-1 ">Periodo</div>
+    <div class="col-sm-3 ">Acciones</div>
+  </div>
+  {% for Convocatoria in object_list %}
+  <div class="row" style="background-color:#ddd;">
+    <div class="col-sm-1 "> {{ Convocatoria.idarea }}</div>
+    <div class="col-sm-1 "> {{ Convocatoria.nombre }}</div>
+    <div class="col-sm-2 "> {{ Convocatoria.descripcion }}</div>
+    <div class="col-sm-3 "> {{ Convocatoria.detalle }}</div>
+    <div class="col-sm-1 "> {{ Convocatoria.estado }}</div>
+    <div class="col-sm-1 "> {{ Convocatoria.inicio  | date:"d-m-y" }} / {{ Convocatoria.finalizacion  | date:"d-m-y" }}</div>
+    <div class="col-sm-2 ">
+      <div class="btn-group btn-group-sm">
+        <a class="btn btn-primary" href="">Editar</a>
+        <a class="btn btn-primary" href="">Inscripciones</a>
+        <button type="button" class="btn btn-primary" href="">Eliminar</button>
+      </div>
+    </div>
+
+  </div>
+  {% endfor %}
+</div>
+
+{% endblock %}
